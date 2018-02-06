@@ -56,7 +56,8 @@ class Syscase
     end
 
     def example_for(key, value)
-      [key, value.new(key.to_s, path)]
+      value = value.new(key.to_s, path) if value.is_a? Class
+      [key, value]
     end
   end
 end

@@ -11,7 +11,12 @@ class Syscase
     end
 
     def compile
-      parent(:initialize, *describe)
+      return self unless @values.nil?
+      with(describe)
+    end
+
+    def with(args)
+      parent(:initialize, *args)
 
       self
     end
