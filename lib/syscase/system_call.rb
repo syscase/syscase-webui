@@ -3,21 +3,31 @@
 class Syscase
   # System call
   class SystemCall < Syscase::ArgumentBuilder
-    attr_reader :number
-
-    def initialize(number, *args)
-      @number = if number.is_a?(Syscase::Argument::SystemCallNumber)
-                  number
+    def initialize(config, *args)
+      @config = if config.is_a?(Hash)
+                  config
                 else
-                  Syscase::Argument::SystemCallNumber.new(number)
+                  { number: config }
                 end
-      super(padding([@number] + args))
+      super(padding([number] + args))
+    end
+
+    def number
+      @number ||= if @config[:number].is_a?(Syscase::Argument::SystemCallNumber)
+                    @config[:number]
+                  else
+                    Syscase::Argument::SystemCallNumber.new(@config[:number])
+                  end
     end
 
     private
 
+    def size
+      @size ||= @config.fetch(:size, 6)
+    end
+
     def padding(args)
-      n = 7 - args.size
+      n = size + 1 - args.size
       n.times { args << 0 } if n.positive?
       args
     end
