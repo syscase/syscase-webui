@@ -14,6 +14,10 @@ class Syscase
         with_size(1)
       end
 
+      def panic
+        with_size(2)
+      end
+
       def close_session
         with_size(6)
       end
