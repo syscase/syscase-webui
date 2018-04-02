@@ -1,8 +1,8 @@
 # Change Log
 
-## [Unreleased](https://github.com/zaidan/syscase/tree/HEAD)
+## [0.2.0](https://github.com/zaidan/syscase/tree/0.2.0) (2018-04-02)
 
-[Full Changelog](https://github.com/zaidan/syscase/compare/0.1.0...HEAD)
+[Full Changelog](https://github.com/zaidan/syscase/compare/0.1.0...0.2.0)
 
 **Implemented enhancements:**
 
