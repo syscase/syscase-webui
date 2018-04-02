@@ -1,5 +1,14 @@
 # Change Log
 
+## [Unreleased](https://github.com/zaidan/syscase/tree/HEAD)
+
+[Full Changelog](https://github.com/zaidan/syscase/compare/0.1.0...HEAD)
+
+**Implemented enhancements:**
+
+- Add OPTEE panic example [\#3](https://github.com/zaidan/syscase/pull/3) ([zaidan](https://github.com/zaidan))
+- Add basic OPTEE examples [\#2](https://github.com/zaidan/syscase/pull/2) ([zaidan](https://github.com/zaidan))
+
 ## [0.1.0](https://github.com/zaidan/syscase/tree/0.1.0) (2018-02-06)
 
 [Full Changelog](https://github.com/zaidan/syscase/compare/0.0.2...0.1.0)
