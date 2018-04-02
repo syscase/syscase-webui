@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+require 'syscase'
+
+usage = 'Usage: create-examples PATH'
+raise ArgumentError, usage unless ARGV.size == 1
+
+path = File.absolute_path(ARGV[0])
+
+Syscase::Examples::OPTEESMC.new(File.absolute_path(path)).write
