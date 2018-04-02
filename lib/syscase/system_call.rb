@@ -13,7 +13,7 @@ class Syscase
     end
 
     def number
-      @number ||= if @config[:number].is_a?(Syscase::Argument::SystemCallNumber)
+      @number ||= if @config[:number].is_a?(Syscase::Argument)
                     @config[:number]
                   else
                     Syscase::Argument::SystemCallNumber.new(@config[:number])
