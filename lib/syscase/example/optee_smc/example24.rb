@@ -10,8 +10,8 @@ class Syscase
           [
             [
               optee_with_arg,
-              addr32_optee_msg_arg_high,
-              addr32_optee_msg_arg_low,
+              optee_msg_arg,
+              0,
               smc_shm_cached,
               0,
               0,
