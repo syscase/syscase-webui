@@ -151,6 +151,42 @@ class Syscase
         with_size(0x32000004)
       end
 
+      def optee_msg_arg
+        A::OPTEE::SMC::Msg.new(optee_msg)
+      end
+
+      def optee_msg
+        Syscase::Model::OPTEE::SMC::Msg.new(
+          # open session
+          cmd: 0,
+          cancel_id: 123,
+          num_params: 2,
+          params: [param0, param1]
+        )
+      end
+
+      def param0
+        Syscase::Model::OPTEE::SMC::Msg::Param.new(
+          # IN value
+          attr: 0x1,
+          # TA UUID
+          a: 55,
+          b: 66
+        )
+      end
+
+      def param1
+        Syscase::Model::OPTEE::SMC::Msg::Param.new(
+          # IN value
+          attr: 0x1,
+          # Client UUID
+          a: 55,
+          b: 66,
+          # Login class: Public
+          c: 0x00000000
+        )
+      end
+
       def smc_shm_cached
         1
       end

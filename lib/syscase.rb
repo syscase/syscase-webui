@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'dry-struct'
+
 # Syscase namespace
 class Syscase
   def self.ascii(string)
@@ -11,6 +13,9 @@ class Syscase
 end
 
 require 'syscase/buffer'
+require 'syscase/types'
+require 'syscase/model'
+require 'syscase/model/optee/smc/msg'
 require 'syscase/argument/number'
 require 'syscase/argument/alloc'
 require 'syscase/argument/string'
@@ -25,6 +30,7 @@ require 'syscase/argument/ref'
 require 'syscase/argument/vector'
 require 'syscase/argument/vector/v32'
 require 'syscase/argument/vector/v64'
+require 'syscase/argument/optee/smc/msg'
 require 'syscase/argument_builder'
 require 'syscase/argument'
 require 'syscase/system_call'
