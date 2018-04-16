@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'dry-struct'
+
 # Syscase namespace
 class Syscase
   def self.ascii(string)
