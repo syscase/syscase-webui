@@ -13,6 +13,7 @@ class Syscase
 end
 
 require 'syscase/buffer'
+require 'syscase/types'
 require 'syscase/argument/number'
 require 'syscase/argument/alloc'
 require 'syscase/argument/string'
