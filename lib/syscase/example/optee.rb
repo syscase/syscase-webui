@@ -34,6 +34,10 @@ class Syscase
       def get_time
         with_size(13)
       end
+
+      def set_ta_time
+        with_size(14)
+      end
       # rubocop:enable Naming/AccessorMethodName
 
       def buf
@@ -54,6 +58,15 @@ class Syscase
 
       def with_size(number)
         { number: number, size: 8 }
+      end
+
+      def optee_time_arg
+        A::OPTEE::Time.new(
+          Syscase::Model::OPTEE::Time.new(
+            seconds: 12_345,
+            millis: 4567
+          )
+        )
       end
     end
   end
