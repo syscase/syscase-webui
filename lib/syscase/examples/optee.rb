@@ -5,7 +5,7 @@ class Syscase
     # OPTEE
     class OPTEE < self
       def describe
-        describe_of(Syscase::Example::OPTEE, 10)
+        describe_of(Syscase::Example::OPTEE, 11)
       end
     end
   end

@@ -44,6 +44,10 @@ class Syscase
       end
       # rubocop:enable Naming/AccessorMethodName
 
+      def asymm_operate
+        39
+      end
+
       def buf
         @buf ||= A::Alloc.new(1024)
       end
@@ -87,6 +91,16 @@ class Syscase
         A::OPTEE::UTEEParams.new(
           Syscase::Model::OPTEE::UTEEParams.new(
             types: 1
+          )
+        )
+      end
+
+      def utee_attribute_arg
+        A::OPTEE::UTEEAttribute.new(
+          Syscase::Model::OPTEE::UTEEAttribute.new(
+            a: 1,
+            b: 2,
+            id: 123
           )
         )
       end
