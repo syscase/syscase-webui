@@ -18,6 +18,10 @@ class Syscase
         with_size(2)
       end
 
+      def open_session
+        with_size(5)
+      end
+
       def close_session
         with_size(6)
       end
@@ -65,6 +69,24 @@ class Syscase
           Syscase::Model::OPTEE::Time.new(
             seconds: 12_345,
             millis: 4567
+          )
+        )
+      end
+
+      def optee_uuid_arg
+        A::OPTEE::UUID.new(
+          Syscase::Model::OPTEE::UUID.new(
+            time_low: 1_234,
+            time_mid: 5_678,
+            time_hi_and_version: 90
+          )
+        )
+      end
+
+      def utee_params_arg
+        A::OPTEE::UTEEParams.new(
+          Syscase::Model::OPTEE::UTEEParams.new(
+            types: 1
           )
         )
       end
