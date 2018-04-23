@@ -3,10 +3,10 @@
 class Syscase
   class Example
     class OPTEE
-      # OPTEE Example 7
-      class Example7 < self
+      # OPTEE Example 11
+      class Example11 < self
         def describe
-          [[get_time, 0, optee_time_arg]]
+          [[asymm_operate, 1, utee_attribute_arg, 2, buf, l, buf, l]]
         end
       end
     end

@@ -3,10 +3,10 @@
 class Syscase
   class Example
     class OPTEE
-      # OPTEE Example 7
-      class Example7 < self
+      # OPTEE Example 10
+      class Example10 < self
         def describe
-          [[get_time, 0, optee_time_arg]]
+          [[open_session, optee_uuid_arg, 0, utee_params_arg, buf, 0]]
         end
       end
     end
