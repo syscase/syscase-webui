@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+require 'syscase'
+
+usage = 'Usage: create-combined-examples PATH'
+raise ArgumentError, usage unless ARGV.size >= 1
+
+path = File.absolute_path(ARGV[0])
+mode = ARGV.fetch(1, 'optee')
+
+input = File.join(root, 'spec/fixtures/linux_examples.txt')
+
+selected = [
+  Syscase::Examples::OPTEE.new(path),
+  Syscase::Examples::OPTEESMC.new(path)
+]
+
+linux = Syscase::Examples::Linux.new(path)
+linux_extended = Syscase::Examples::Extended::Linux.new(input, path)
+
+selected << linux if mode == 'all'
+selected << linux_extended if mode == 'extended'
+
+Syscase::Combined.new(path, *selected).write
