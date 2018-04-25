@@ -8,6 +8,10 @@ class Syscase
     string.dup.force_encoding(Encoding::ASCII)
   end
 
+  def self.root
+    File.dirname(File.dirname(File.expand_path(__FILE__)))
+  end
+
   BUFFER_DELIMITER = ascii(%(\xa5\xc9))
   CALL_DELIMITER   = ascii(%(\xb7\xe3))
   CASE_DELIMITER   = ascii(%(\xe3\xb7))
