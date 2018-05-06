@@ -6,7 +6,7 @@ $LOAD_PATH << File.join(root, 'lib')
 
 require 'syscase'
 
-usage = 'Usage: create-examples PATH'
+usage = 'Usage: create-optee-examples PATH'
 raise ArgumentError, usage unless ARGV.size == 1
 
 path = File.absolute_path(ARGV[0])
