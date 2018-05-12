@@ -28,6 +28,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency             'lb-project',     '~> 0.2'
   gem.add_dependency             'slim',           '~> 3.0', '>= 3.0.9'
 
+  gem.add_dependency             'rom',            '~> 4.2'
+  gem.add_dependency             'rom-sql',        '~> 2.4'
+
   gem.add_development_dependency 'devtools',       '~> 0.1.20'
   gem.add_development_dependency 'guard',          '~> 2.14'
   gem.add_development_dependency 'guard-bundler',  '~> 2.1'
