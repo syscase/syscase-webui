@@ -7,32 +7,32 @@ class Syscase
       # SMC model
       class SMC
         # Msg model
-        class Msg < Syscase::Model
+        class Msg < Syscase::Model::WithDefaults
           # Param model
-          class Param < Syscase::Model
-            constructor_type :schema
-            attribute :attr, Syscase::Types::Strict::Int.default(0x0)
-            attribute :tmem_buf_ptr, Syscase::Types::Coercible::Int.default(0x0)
-            attribute :tmem_size, Syscase::Types::Strict::Int.default(0x0)
-            attribute :tmem_shm_ref, Syscase::Types::Strict::Int.default(0x0)
-            attribute :rmem_offs, Syscase::Types::Strict::Int.default(0x0)
-            attribute :rmem_size, Syscase::Types::Strict::Int.default(0x0)
-            attribute :rmem_shm_ref, Syscase::Types::Strict::Int.default(0x0)
-            attribute :a, Syscase::Types::Strict::Int.default(0x0)
-            attribute :b, Syscase::Types::Strict::Int.default(0x0)
-            attribute :c, Syscase::Types::Strict::Int.default(0x0)
+          class Param < Syscase::Model::WithDefaults
+            attribute :attr, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :tmem_buf_ptr,
+                      Syscase::Types::Coercible::Integer.default(0x0)
+            attribute :tmem_size, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :tmem_shm_ref,
+                      Syscase::Types::Strict::Integer.default(0x0)
+            attribute :rmem_offs, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :rmem_size, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :rmem_shm_ref,
+                      Syscase::Types::Strict::Integer.default(0x0)
+            attribute :a, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :b, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :c, Syscase::Types::Strict::Integer.default(0x0)
           end
 
-          constructor_type :schema
-
-          attribute :cmd, Syscase::Types::Strict::Int
-          attribute :func, Syscase::Types::Strict::Int.default(0x0)
-          attribute :session, Syscase::Types::Strict::Int.default(0x0)
-          attribute :cancel_id, Syscase::Types::Strict::Int.default(0x0)
-          attribute :pad, Syscase::Types::Strict::Int.default(0x0)
-          attribute :ret, Syscase::Types::Strict::Int.default(0x0)
-          attribute :ret_origin, Syscase::Types::Strict::Int.default(0x0)
-          attribute :num_params, Syscase::Types::Strict::Int.default(0x0)
+          attribute :cmd, Syscase::Types::Strict::Integer
+          attribute :func, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :session, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :cancel_id, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :pad, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :ret, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :ret_origin, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :num_params, Syscase::Types::Strict::Integer.default(0x0)
           attribute :params, Syscase::Types::Strict::Array.of(Param)
 
           def pack(buffer)

@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files      = %w[README.md]
   gem.required_ruby_version = '>= 2.5'
 
-  gem.add_dependency             'dry-struct',     '~> 0.4.0'
+  gem.add_dependency             'dry-struct',     '~> 0.5.0'
   gem.add_development_dependency 'devtools',       '~> 0.1.20'
   gem.add_development_dependency 'guard',          '~> 2.14'
   gem.add_development_dependency 'guard-bundler',  '~> 2.1'
