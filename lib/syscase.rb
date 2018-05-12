@@ -8,6 +8,12 @@ class Syscase
     string.dup.force_encoding(Encoding::ASCII)
   end
 
+  # Get root path
+  #
+  # @return [dir_name]
+  #
+  # @api private
+  #
   def self.root
     File.dirname(File.dirname(File.expand_path(__FILE__)))
   end
