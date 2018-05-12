@@ -39,3 +39,5 @@ tags
 gems.tags
 
 ## PROJECT::SPECIFIC
+public
+node_modules
