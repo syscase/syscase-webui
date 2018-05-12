@@ -1,6 +1,7 @@
 AllCops:
   DisplayCopNames: true
-  Exclude: []
+  Exclude:
+    - 'node_modules/**/*'
 Naming/FileName:
   Exclude:
     - Rakefile
