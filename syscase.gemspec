@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files      = %w[README.md]
   gem.required_ruby_version = '>= 2.5'
 
-  gem.add_dependency             'dry-struct',     '~> 0.5.0'
+  gem.add_dependency             'dry-struct',     '~> 0.4.0'
   gem.add_dependency             'lb-project',     '~> 0.2'
   gem.add_dependency             'slim',           '~> 3.0', '>= 3.0.9'
 

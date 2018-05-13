@@ -6,9 +6,9 @@ class Syscase
     class OPTEE
       # UTEEAttribute model
       class UTEEAttribute < Syscase::Model::WithDefaults
-        attribute :a, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :b, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :id, Syscase::Types::Strict::Integer.default(0x0)
+        attribute :a, INTEGER.default(0x0)
+        attribute :b, INTEGER.default(0x0)
+        attribute :id, INTEGER.default(0x0)
 
         def pack(buffer)
           buffer.pack('Q>', a)

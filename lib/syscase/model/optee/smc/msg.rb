@@ -10,29 +10,25 @@ class Syscase
         class Msg < Syscase::Model::WithDefaults
           # Param model
           class Param < Syscase::Model::WithDefaults
-            attribute :attr, Syscase::Types::Strict::Integer.default(0x0)
-            attribute :tmem_buf_ptr,
-                      Syscase::Types::Coercible::Integer.default(0x0)
-            attribute :tmem_size, Syscase::Types::Strict::Integer.default(0x0)
-            attribute :tmem_shm_ref,
-                      Syscase::Types::Strict::Integer.default(0x0)
-            attribute :rmem_offs, Syscase::Types::Strict::Integer.default(0x0)
-            attribute :rmem_size, Syscase::Types::Strict::Integer.default(0x0)
-            attribute :rmem_shm_ref,
-                      Syscase::Types::Strict::Integer.default(0x0)
-            attribute :a, Syscase::Types::Strict::Integer.default(0x0)
-            attribute :b, Syscase::Types::Strict::Integer.default(0x0)
-            attribute :c, Syscase::Types::Strict::Integer.default(0x0)
+            attribute :attr, INTEGER.default(0x0)
+            attribute :tmem_buf_ptr, INTEGER.default(0x0)
+            attribute :tmem_size, INTEGER.default(0x0)
+            attribute :tmem_shm_ref, INTEGER.default(0x0)
+            attribute :rmem_offs, INTEGER.default(0x0)
+            attribute :rmem_size, INTEGER.default(0x0)
+            attribute :rmem_shm_ref, INTEGER.default(0x0)
+            attribute :a, INTEGER.default(0x0)
+            attribute :b, INTEGER.default(0x0)
+            attribute :c, INTEGER.default(0x0)
           end
-
-          attribute :cmd, Syscase::Types::Strict::Integer
-          attribute :func, Syscase::Types::Strict::Integer.default(0x0)
-          attribute :session, Syscase::Types::Strict::Integer.default(0x0)
-          attribute :cancel_id, Syscase::Types::Strict::Integer.default(0x0)
-          attribute :pad, Syscase::Types::Strict::Integer.default(0x0)
-          attribute :ret, Syscase::Types::Strict::Integer.default(0x0)
-          attribute :ret_origin, Syscase::Types::Strict::Integer.default(0x0)
-          attribute :num_params, Syscase::Types::Strict::Integer.default(0x0)
+          attribute :cmd, INTEGER
+          attribute :func, INTEGER.default(0x0)
+          attribute :session, INTEGER.default(0x0)
+          attribute :cancel_id, INTEGER.default(0x0)
+          attribute :pad, INTEGER.default(0x0)
+          attribute :ret, INTEGER.default(0x0)
+          attribute :ret_origin, INTEGER.default(0x0)
+          attribute :num_params, INTEGER.default(0x0)
           attribute :params, Syscase::Types::Strict::Array.of(Param)
 
           def pack(buffer)

@@ -6,18 +6,17 @@ class Syscase
     class OPTEE
       # UUID model
       class UUID < Syscase::Model::WithDefaults
-        attribute :time_low, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :time_mid, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :time_hi_and_version,
-                  Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_0, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_1, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_2, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_3, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_4, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_5, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_6, Syscase::Types::Strict::Integer.default(0x0)
-        attribute :csan_7, Syscase::Types::Strict::Integer.default(0x0)
+        attribute :time_low, INTEGER.default(0x0)
+        attribute :time_mid, INTEGER.default(0x0)
+        attribute :time_hi_and_version, INTEGER.default(0x0)
+        attribute :csan_0, INTEGER.default(0x0)
+        attribute :csan_1, INTEGER.default(0x0)
+        attribute :csan_2, INTEGER.default(0x0)
+        attribute :csan_3, INTEGER.default(0x0)
+        attribute :csan_4, INTEGER.default(0x0)
+        attribute :csan_5, INTEGER.default(0x0)
+        attribute :csan_6, INTEGER.default(0x0)
+        attribute :csan_7, INTEGER.default(0x0)
 
         def pack(buffer)
           buffer.pack('L>', time_low)
