@@ -37,6 +37,16 @@ class Syscase
         expire_after: 60 * 60 * 24 * 30
       }
     end
+
+    def self.db
+      @db ||= LB::Persistence.new(
+        LB::Persistence::Settings.new(
+          source_dir: File.join(root, 'lib/syscase/web/persistence'),
+          namespace: 'Syscase::Web::Persistence',
+          database_uri: config.database_uri
+        )
+      )
+    end
   end
 end
 
