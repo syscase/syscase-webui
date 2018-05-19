@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # LB
+require 'lb-persistence'
 require 'lb-project'
 
 # Rendering
