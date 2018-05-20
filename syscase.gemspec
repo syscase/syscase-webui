@@ -24,13 +24,10 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files      = %w[README.md]
   gem.required_ruby_version = '>= 2.5'
 
-  gem.add_dependency             'dry-struct',     '~> 0.4.0'
-  gem.add_dependency             'lb-persistence', '~> 0.0'
-  gem.add_dependency             'lb-project',     '~> 0.2'
+  gem.add_dependency             'lb-persistence', '~> 0.0.2'
+  gem.add_dependency             'lb-project',     '~> 0.2.1'
+  gem.add_dependency             'dry-types',      '~> 0.12', '< 0.13'
   gem.add_dependency             'slim',           '~> 3.0', '>= 3.0.9'
-
-  gem.add_dependency             'rom',            '~> 4.2'
-  gem.add_dependency             'rom-sql',        '~> 2.4'
   gem.add_dependency             'sqlite3',        '~> 1.3'
 
   gem.add_development_dependency 'devtools',       '~> 0.1.20'
