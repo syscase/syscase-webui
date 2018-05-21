@@ -8,4 +8,5 @@ Naming/FileName:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'db/**/*'
     - '*.gemspec'
