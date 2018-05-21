@@ -10,6 +10,8 @@ require 'rom/sql/rake_task'
 namespace :db do
   task :setup do
     require 'syscase'
-    ROM::SQL::RakeSupport.env = Syscase::Web.db.container
+    db = Syscase::Web.db
+    container = db.container_from(db.configuration_for(db.connect(db.uri)))
+    ROM::SQL::RakeSupport.env = container
   end
 end
