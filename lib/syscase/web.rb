@@ -76,6 +76,7 @@ require 'syscase/web/persistence/model/file'
 require 'syscase/web/persistence/model/line'
 require 'syscase/web/persistence/model/address'
 require 'syscase/web/persistence/model/example'
+require 'syscase/web/persistence/model/path'
 
 # Pages
 require 'syscase/web/page'
