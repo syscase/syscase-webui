@@ -90,6 +90,7 @@ require 'syscase/web/persistence/model/example_with_addresses'
 require 'syscase/web/persistence/repositories/files'
 require 'syscase/web/persistence/repositories/lines'
 require 'syscase/web/persistence/repositories/addresses'
+require 'syscase/web/persistence/repositories/examples'
 
 # Pages
 require 'syscase/web/page'
