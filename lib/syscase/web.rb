@@ -73,6 +73,7 @@ require 'syscase/web/model/example_with_addresses'
 
 # Persistence models
 require 'syscase/web/persistence/model/file'
+require 'syscase/web/persistence/model/line'
 
 # Pages
 require 'syscase/web/page'
