@@ -58,6 +58,9 @@ class Syscase
   end
 end
 
+# Models
+require 'syscase/web/model'
+
 # Pages
 require 'syscase/web/page'
 require 'syscase/web/page/coverage'
