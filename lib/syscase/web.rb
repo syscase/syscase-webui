@@ -69,6 +69,7 @@ require 'syscase/web/model/job'
 require 'syscase/web/model/line_with_addresses'
 require 'syscase/web/model/file_with_addresses'
 require 'syscase/web/model/path_with_addresses'
+require 'syscase/web/model/example_with_addresses'
 
 # Pages
 require 'syscase/web/page'
