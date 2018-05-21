@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'bundler/setup'
+
 # LB
 require 'lb-persistence'
 require 'lb-project'
