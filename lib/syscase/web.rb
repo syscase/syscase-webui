@@ -61,6 +61,7 @@ end
 # Models
 require 'syscase/web/model'
 require 'syscase/web/model/address'
+require 'syscase/web/model/example'
 
 # Pages
 require 'syscase/web/page'
