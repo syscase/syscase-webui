@@ -60,6 +60,7 @@ end
 
 # Models
 require 'syscase/web/model'
+require 'syscase/web/model/line'
 require 'syscase/web/model/address'
 require 'syscase/web/model/example'
 require 'syscase/web/model/path'
