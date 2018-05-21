@@ -14,12 +14,14 @@ require 'slim'
 
 # Syscase::Web
 require 'syscase/web/types'
+require 'syscase/web/functions'
 require 'syscase/web/config'
 require 'syscase/web/site'
 
 # Import transproc functions
 ROM::Processor::Transproc::Functions.tap do |registry|
   registry.import LB::Persistence::Functions
+  registry.import Syscase::Web::Functions
 end
 
 class Syscase
