@@ -60,6 +60,7 @@ end
 
 # Models
 require 'syscase/web/model'
+require 'syscase/web/model/address'
 
 # Pages
 require 'syscase/web/page'
