@@ -14,6 +14,11 @@ require 'syscase/web/types'
 require 'syscase/web/config'
 require 'syscase/web/site'
 
+# Import transproc functions
+ROM::Processor::Transproc::Functions.tap do |registry|
+  registry.import LB::Persistence::Functions
+end
+
 class Syscase
   # Web interface
   class Web
