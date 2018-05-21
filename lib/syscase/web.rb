@@ -6,6 +6,9 @@ require 'bundler/setup'
 require 'lb-persistence'
 require 'lb-project'
 
+# ROM
+require 'rom/transformer'
+
 # Rendering
 require 'slim'
 
