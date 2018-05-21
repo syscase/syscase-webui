@@ -86,6 +86,9 @@ require 'syscase/web/persistence/model/file_with_addresses'
 require 'syscase/web/persistence/model/path_with_addresses'
 require 'syscase/web/persistence/model/example_with_addresses'
 
+# Repositories
+require 'syscase/web/persistence/repositories/addresses'
+
 # Pages
 require 'syscase/web/page'
 require 'syscase/web/page/coverage'
