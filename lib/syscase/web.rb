@@ -92,6 +92,7 @@ require 'syscase/web/persistence/repositories/lines'
 require 'syscase/web/persistence/repositories/addresses'
 require 'syscase/web/persistence/repositories/examples'
 require 'syscase/web/persistence/repositories/paths'
+require 'syscase/web/persistence/repositories/jobs'
 
 # Pages
 require 'syscase/web/page'
