@@ -80,6 +80,7 @@ require 'syscase/web/persistence/model/path'
 require 'syscase/web/persistence/model/job'
 require 'syscase/web/persistence/model/line_with_addresses'
 require 'syscase/web/persistence/model/file_with_addresses'
+require 'syscase/web/persistence/model/path_with_addresses'
 
 # Pages
 require 'syscase/web/page'
