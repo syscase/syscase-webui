@@ -5,6 +5,7 @@ class Syscase
     class Model
       # Line model
       class Line < self
+        attribute :file, Syscase::Web::Model::File
         attribute :line, Syscase::Web::Types::Strict::Int
         attribute :code, Syscase::Web::Types::Strict::String
       end

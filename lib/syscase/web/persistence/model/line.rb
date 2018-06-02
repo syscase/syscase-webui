@@ -6,7 +6,6 @@ class Syscase
       module Model
         # Persistence line model
         class Line < Syscase::Web::Model::Line
-          attribute :file, Syscase::Web::Types::Strict::Int
         end
       end
     end

@@ -9,6 +9,7 @@ class Syscase
           extend LB::Persistence::Model::Attributes
 
           attribute :file, Syscase::Web::Types::Strict::Int
+          attribute :function, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :addresses, Syscase::Web::Types::Strict::Array
             .member(Syscase::Web::Persistence::Model::Address)

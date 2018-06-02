@@ -18,7 +18,7 @@ class Syscase
 
           group_prefix(
             :lines,
-            %i[line_file line_line line_code addresses],
+            %i[line_file line_function line_line line_code addresses],
             'line_',
             Syscase::Web::Persistence::Model::LineWithAddresses
           )
