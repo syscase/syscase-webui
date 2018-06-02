@@ -80,6 +80,7 @@ require 'syscase/web/model/example_with_addresses'
 
 # Persistence models
 require 'syscase/web/persistence/model/file'
+require 'syscase/web/persistence/model/function'
 require 'syscase/web/persistence/model/line'
 require 'syscase/web/persistence/model/address'
 require 'syscase/web/persistence/model/example'
