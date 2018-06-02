@@ -7,22 +7,28 @@ ROM::SQL.migration do
       column :name, String, null: false
     end
 
-    create_table :lines do
+    create_table :functions do
+      primary_key :id
+      column :name, String, null: false
+      column :signature, String, null: false
       foreign_key :file, :files
-      column :line, Integer, null: false
+    end
 
-      primary_key %i[file line]
+    create_table :lines do
+      primary_key :id
+      foreign_key :file, :files
+      foreign_key :function, :functions
+      column :line, Integer, null: false
+      index :line
 
       column :code, String, null: false
     end
 
     create_table :addresses do
-      primary_key :address, type: :Bignum
+      primary_key :id, type: :Bignum
+      column :address, Integer, type: :Bignum, null: false
 
-      column :file, Integer, null: false
-      column :line, Integer, null: false
-
-      foreign_key %i[file line], :lines
+      foreign_key :line, :lines
 
       column :code, String, null: false
     end
