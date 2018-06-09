@@ -27,13 +27,17 @@ class Syscase
       end
 
       def disassemble(function)
-        run("disassemble /m #{function}")
+        run("disassemble /s #{function}")
       end
 
       def disassembled_functions
         functions.transform_values do |functions|
           functions.map do |function|
-            function.merge(lines: Lines.new(disassemble(function[:name])).call)
+            function.merge(
+              lines: Lines.new(
+                disassemble("'#{function[:file]}'::#{function[:name]}")
+              ).call
+            )
           end
         end
       end
@@ -77,6 +81,8 @@ class Syscase
 
       # Transform GDB disassemble result to hash
       class Lines
+        LINE_REGEX = /(^[0-9]+)([^0-9]+?.*)/
+
         def initialize(gdb_output)
           gdb_output.slice!(
             "Dump of assembler code for function cpu_spin_lock_dldetect:\n"
@@ -87,18 +93,23 @@ class Syscase
         end
 
         def call
+          file = nil
           @gdb_blocks.each_with_object({}) do |gdb_block, hash|
-            hash.merge!(parse_lines(gdb_block))
+            line, rest, match = next_line_match(gdb_block)
+            unless match
+              file = line[/(.*):\n/, 1]
+              gdb_block = rest
+            end
+            hash.merge!(parse_lines(gdb_block, file))
           end
         end
 
         private
 
-        def parse_lines(block, lines = {})
-          line, rest = next_line(block)
-          match = /(^[0-9]+)([^0-9]+?.*)/.match(line)
+        def parse_lines(block, file, lines = {})
+          _, rest, match = next_line_match(block)
           return map_lines(lines, parse_addresses(block)) unless match
-          parse_lines(rest, lines.merge(map_line(line, match)))
+          parse_lines(rest, file, lines.merge(map_line(file, match)))
         end
 
         def next_line(block)
@@ -106,10 +117,15 @@ class Syscase
           [block_lines[0], block_lines[1..-1].to_a.join]
         end
 
-        def map_line(_line, match)
+        def next_line_match(block)
+          line, rest = next_line(block)
+          [line, rest, LINE_REGEX.match(line)]
+        end
+
+        def map_line(file, match)
           number = Integer(match[1])
           {
-            number => { line: number, code: match[2] }
+            number => { file: file, line: number, code: match[2] }
           }
         end
 
