@@ -112,3 +112,4 @@ require 'syscase/web/app'
 
 # Import
 require 'syscase/web/gdb'
+require 'syscase/web/gdb_import'
