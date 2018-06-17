@@ -27,6 +27,10 @@ class Syscase
             :file_with_addresses
           end
 
+          def by_name(name)
+            base_relation.by_name(name).one!
+          end
+
           # TODO: Extract basic methods:
 
           def by_id(id)
