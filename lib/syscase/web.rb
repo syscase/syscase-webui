@@ -109,3 +109,7 @@ require 'syscase/web/page/coverage'
 require 'syscase/web/route'
 require 'syscase/web/route/coverage'
 require 'syscase/web/app'
+
+# Import
+require 'syscase/web/gdb'
+require 'syscase/web/gdb_import'
