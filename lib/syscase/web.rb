@@ -1,15 +1,28 @@
 # frozen_string_literal: true
 
+require 'bundler/setup'
+
 # LB
+require 'lb-persistence'
 require 'lb-project'
+
+# ROM
+require 'rom/transformer'
 
 # Rendering
 require 'slim'
 
 # Syscase::Web
 require 'syscase/web/types'
+require 'syscase/web/functions'
 require 'syscase/web/config'
 require 'syscase/web/site'
+
+# Import transproc functions
+ROM::Processor::Transproc::Functions.tap do |registry|
+  registry.import LB::Persistence::Functions
+  registry.import Syscase::Web::Functions
+end
 
 class Syscase
   # Web interface
@@ -49,6 +62,44 @@ class Syscase
     end
   end
 end
+
+# Models
+require 'syscase/web/model'
+require 'syscase/web/model/file'
+require 'syscase/web/model/function'
+require 'syscase/web/model/line'
+require 'syscase/web/model/address'
+require 'syscase/web/model/example'
+require 'syscase/web/model/path'
+require 'syscase/web/model/job'
+require 'syscase/web/model/line_with_addresses'
+require 'syscase/web/model/function_with_addresses'
+require 'syscase/web/model/file_with_addresses'
+require 'syscase/web/model/path_with_addresses'
+require 'syscase/web/model/example_with_addresses'
+
+# Persistence models
+require 'syscase/web/persistence/model/file'
+require 'syscase/web/persistence/model/function'
+require 'syscase/web/persistence/model/line'
+require 'syscase/web/persistence/model/address'
+require 'syscase/web/persistence/model/example'
+require 'syscase/web/persistence/model/path'
+require 'syscase/web/persistence/model/job'
+require 'syscase/web/persistence/model/line_with_addresses'
+require 'syscase/web/persistence/model/function_with_addresses'
+require 'syscase/web/persistence/model/file_with_addresses'
+require 'syscase/web/persistence/model/path_with_addresses'
+require 'syscase/web/persistence/model/example_with_addresses'
+
+# Repositories
+require 'syscase/web/persistence/repositories/files'
+require 'syscase/web/persistence/repositories/functions'
+require 'syscase/web/persistence/repositories/lines'
+require 'syscase/web/persistence/repositories/addresses'
+require 'syscase/web/persistence/repositories/examples'
+require 'syscase/web/persistence/repositories/paths'
+require 'syscase/web/persistence/repositories/jobs'
 
 # Pages
 require 'syscase/web/page'
