@@ -8,7 +8,7 @@ class Syscase
         class LineWithAddresses < Syscase::Web::Model::LineWithAddresses
           extend LB::Persistence::Model::Attributes
 
-          attribute :file, Syscase::Web::Types::Strict::Int
+          attribute :id, Syscase::Web::Types::Strict::Int
           attribute :function, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :addresses, Syscase::Web::Types::Strict::Array

@@ -32,8 +32,12 @@ class Syscase
           end
 
           def joined
-            left_join_all_qualified(addresses_joins)
+            left_join_all_qualified(base_joins)
+              .left_join(:files, line_files_on, table_alias: :line_files)
+              .left_join_all_qualified(addresses_joins)
+              .select_append(*files_attributes)
               .select_append(*lines_attributes)
+              .select_append(*line_files_attributes)
               .select_append(*addresses_attributes)
           end
 
@@ -43,21 +47,40 @@ class Syscase
 
           private
 
+          def files_attributes
+            prefixed(files)
+          end
+
           def lines_attributes
             prefixed(lines)
+          end
+
+          def line_files_attributes
+            # Use qualified to set table alias, `prefixed` does not support
+            # setting table alias
+            # TODO: Add support for setting table alias in upstream
+            # implementation
+            prefixed(files.qualified(:line_files), :line_file)
           end
 
           def addresses_attributes
             prefixed(addresses)
           end
 
+          def base_joins
+            {
+              files: { functions[:file] => files[:id]       },
+              lines: { functions[:id]   => lines[:function] }
+            }
+          end
+
+          def line_files_on
+            { lines[:file].qualified => files[:id].qualified(:line_files) }
+          end
+
           def addresses_joins
             {
-              lines: { functions[:id] => lines[:function] },
-              addresses: {
-                addresses[:file] => lines[:file],
-                addresses[:line] => lines[:line]
-              }
+              addresses: { addresses[:line] => lines[:line] }
             }
           end
         end
