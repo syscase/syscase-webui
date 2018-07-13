@@ -35,28 +35,31 @@ ROM::SQL.migration do
 
     create_table :examples do
       primary_key :id
-      column :input, String, null: false
-      column :hash, String, null: false
-      column :path, String, null: false
-      column :time, DateTime, null: false
+
+      column :input,  String, null: false
+      column :result, String, null: false
+      column :sha256, String, null: false
+      column :path,   String, null: false
+      column :time,   Time,   null: false
+
+      index :sha256
+    end
+
+    create_table :example_counts do
+      primary_key :id
+      foreign_key :example, :examples
       column :count, Integer, null: false
     end
 
     create_table :paths do
-      foreign_key :example, :examples
-      column :index, Integer, null: false
-      primary_key %i[example index]
-
-      foreign_key :address, :addresses, type: :Bignum
-    end
-
-    create_table :jobs do
       primary_key :id
-      column :state, String, null: false
-      column :input, String, null: false
-      column :hash, String, null: false
-      column :path, String, null: false
-      column :time, DateTime, null: false
+      foreign_key :example, :examples
+
+      column :index,   Integer, null: false
+      # Not defining address as foreign key to support unknown paths
+      column :address, Integer, null: false, type: :Bignum
+
+      index :address
     end
   end
 end
