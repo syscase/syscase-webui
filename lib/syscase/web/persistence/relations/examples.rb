@@ -9,17 +9,18 @@ class Syscase
           include LB::Persistence::Relation::Joins
 
           schema(:examples) do
-            attribute :id, ROM::SQL::Types::Serial
-            primary_key :id
+            attribute :id,     ROM::SQL::Types::Serial
+            attribute :input,  ROM::SQL::Types::String
+            attribute :result, ROM::SQL::Types::String
+            attribute :hash,   ROM::SQL::Types::String
+            attribute :path,   ROM::SQL::Types::String
+            attribute :time,   ROM::SQL::Types::DateTime
 
-            attribute :input, ROM::SQL::Types::String
-            attribute :hash, ROM::SQL::Types::String
-            attribute :path, ROM::SQL::Types::String
-            attribute :time, ROM::SQL::Types::DateTime
-            attribute :count, ROM::SQL::Types::Int
+            primary_key :id
 
             associations do
               has_many :paths
+              has_many :example_counts
               has_many :addresses, through: :paths
             end
           end
@@ -35,6 +36,7 @@ class Syscase
           def joined
             left_join_all_qualified(addresses_joins)
               .select_append(*joined_attributes)
+              .sum(:count)
           end
 
           def with_addresses
@@ -44,11 +46,12 @@ class Syscase
           private
 
           def joined_attributes
-            prefixed(lines)
+            prefixed(examples) + prefixed(paths) + prefixed(addresses)
           end
 
           def addresses_joins
             {
+              example_counts: { examples[:id] => paths[:example] },
               paths: { examples[:id] => paths[:example] },
               addresses: { addresses[:address] => paths[:address] }
             }
