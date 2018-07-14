@@ -75,7 +75,7 @@ require 'syscase/web/model/line_with_addresses'
 require 'syscase/web/model/function_with_addresses'
 require 'syscase/web/model/file_with_addresses'
 require 'syscase/web/model/path_with_addresses'
-require 'syscase/web/model/example_with_addresses'
+require 'syscase/web/model/example_with_paths'
 
 # Persistence models
 require 'syscase/web/persistence/model/file'
@@ -88,7 +88,7 @@ require 'syscase/web/persistence/model/line_with_addresses'
 require 'syscase/web/persistence/model/function_with_addresses'
 require 'syscase/web/persistence/model/file_with_addresses'
 require 'syscase/web/persistence/model/path_with_addresses'
-require 'syscase/web/persistence/model/example_with_addresses'
+require 'syscase/web/persistence/model/example_with_paths'
 
 # Repositories
 require 'syscase/web/persistence/repositories/files'
