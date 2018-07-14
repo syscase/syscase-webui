@@ -9,7 +9,6 @@ class Syscase
           extend LB::Persistence::Model::Attributes
 
           attribute :example, Syscase::Web::Types::Strict::Int
-          attribute :index, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :addresses, Syscase::Web::Types::Strict::Array
             .member(Syscase::Web::Persistence::Model::Address)

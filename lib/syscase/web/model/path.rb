@@ -5,6 +5,7 @@ class Syscase
     class Model
       # Path model
       class Path < self
+        attribute :index,   Syscase::Web::Types::Strict::Int
       end
     end
   end

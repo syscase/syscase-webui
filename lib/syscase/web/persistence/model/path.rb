@@ -7,7 +7,6 @@ class Syscase
         # Persistence path model
         class Path < Syscase::Web::Model::Path
           attribute :example, Syscase::Web::Types::Strict::Int
-          attribute :index, Syscase::Web::Types::Strict::Int
         end
       end
     end
