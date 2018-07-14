@@ -7,7 +7,7 @@ class Syscase
         # Persistence path model with nested addresses
         class PathWithAddresses < Syscase::Web::Model::PathWithAddresses
           extend LB::Persistence::Model::Attributes
-
+          attribute :id,      Syscase::Web::Types::Strict::Int
           attribute :example, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :addresses, Syscase::Web::Types::Strict::Array
