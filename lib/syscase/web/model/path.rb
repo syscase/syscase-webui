@@ -6,6 +6,7 @@ class Syscase
       # Path model
       class Path < self
         attribute :index,   Syscase::Web::Types::Strict::Int
+        attribute :address, Syscase::Web::Types::Strict::Int
       end
     end
   end
