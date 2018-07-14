@@ -9,7 +9,6 @@ class Syscase
         attribute :hash, Syscase::Web::Types::Strict::String
         attribute :path, Syscase::Web::Types::Strict::String
         attribute :time, Syscase::Web::Types::Strict::DateTime
-        attribute :count, Syscase::Web::Types::Strict::Int
       end
     end
   end
