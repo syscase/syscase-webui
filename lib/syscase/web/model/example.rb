@@ -8,7 +8,7 @@ class Syscase
         attribute :input, Syscase::Web::Types::Strict::String
         attribute :hash, Syscase::Web::Types::Strict::String
         attribute :path, Syscase::Web::Types::Strict::String
-        attribute :time, Syscase::Web::Types::Strict::DateTime
+        attribute :time,   Syscase::Web::Types::Strict::Time
       end
     end
   end
