@@ -12,7 +12,7 @@ class Syscase
             attribute :id,     ROM::SQL::Types::Serial
             attribute :input,  ROM::SQL::Types::String
             attribute :result, ROM::SQL::Types::String
-            attribute :hash,   ROM::SQL::Types::String
+            attribute :sha256, ROM::SQL::Types::String
             attribute :path,   ROM::SQL::Types::String
             attribute :time,   ROM::SQL::Types::DateTime
 
@@ -29,8 +29,8 @@ class Syscase
             where(id: id)
           end
 
-          def by_hash(hash)
-            where(hash: hash)
+          def by_hash(sha256)
+            where(sha256: sha256)
           end
 
           def joined
