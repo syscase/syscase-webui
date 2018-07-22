@@ -26,6 +26,20 @@ class Syscase
             where(address: address)
           end
 
+          def code_by_example(example)
+            join_addresses_for_example(
+              select(paths[:index], addresses[:code]),
+              example
+            ).distinct.order(paths[:index])
+          end
+
+          def join_addresses_for_example(base, example)
+            base
+              .join(:addresses,
+                    paths[:address].qualified => addresses[:address].qualified,
+                    paths[:example] => example)
+          end
+
           def joined
             left_join(:addresses,
                       paths[:address] => addresses[:address])
