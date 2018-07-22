@@ -11,7 +11,7 @@ class Syscase
           attribute :id, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :lines, Syscase::Web::Types::Strict::Array
-            .member(Syscase::Web::Persistence::Model::LineWithAddresses)
+            .of(Syscase::Web::Persistence::Model::LineWithAddresses)
         end
       end
     end

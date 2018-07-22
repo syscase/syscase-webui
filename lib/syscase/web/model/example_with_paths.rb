@@ -6,7 +6,7 @@ class Syscase
       # Example model with nested paths
       class ExampleWithPaths < Example
         attribute :paths, Syscase::Web::Types::Strict::Array
-          .member(Syscase::Web::Model::Path)
+          .of(Syscase::Web::Model::Path)
       end
     end
   end

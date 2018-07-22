@@ -6,7 +6,7 @@ class Syscase
       # File model with nested addresses
       class FileWithAddresses < File
         attribute :lines, Syscase::Web::Types::Strict::Array
-          .member(Syscase::Web::Model::LineWithAddresses)
+          .of(Syscase::Web::Model::LineWithAddresses)
       end
     end
   end

@@ -6,7 +6,7 @@ class Syscase
       # Path model with nested addresses
       class PathWithAddresses < Path
         attribute :addresses, Syscase::Web::Types::Strict::Array
-          .member(Syscase::Web::Model::Address)
+          .of(Syscase::Web::Model::Address)
       end
     end
   end

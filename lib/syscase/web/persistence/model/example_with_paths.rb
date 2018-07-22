@@ -11,7 +11,7 @@ class Syscase
           attribute :id, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :paths, Syscase::Web::Types::Strict::Array
-            .member(Syscase::Web::Persistence::Model::Path)
+            .of(Syscase::Web::Persistence::Model::Path)
         end
       end
     end
