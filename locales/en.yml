@@ -4,3 +4,5 @@ site:
 page:
   coverage:
     title: Coverage
+  example:
+    title: Example
