@@ -109,6 +109,7 @@ require 'syscase/web/page/example'
 # Routes
 require 'syscase/web/route'
 require 'syscase/web/route/coverage'
+require 'syscase/web/route/example'
 require 'syscase/web/app'
 
 # Import

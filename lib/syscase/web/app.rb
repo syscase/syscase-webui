@@ -13,6 +13,10 @@ class Syscase
           r.redirect '/coverage'
         end
 
+        r.on 'example' do
+          r.run Syscase::Web::Route::Example.freeze.app
+        end
+
         r.on 'coverage' do
           r.run Syscase::Web::Route::Coverage.freeze.app
         end
