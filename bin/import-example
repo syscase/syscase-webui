@@ -13,13 +13,16 @@ if log_file
   $stderr.reopen logger.instance_variable_get(:@logdev).dev
 end
 
-usage = 'Usage: import-example result INPUT_FILE PATH_FILE [remove]'
-raise ArgumentError, usage unless ARGV.size >= 3
+usage = 'Usage: import-example result INPUT_FILE PATH_FILE SECURE_LOG_FILE'\
+  'NORMAL_LOG_FILE [remove]'
+raise ArgumentError, usage unless ARGV.size >= 5
 
 result = ARGV[0]
 input_file = File.absolute_path(ARGV[1])
 path_file = File.absolute_path(ARGV[2])
-remove = ARGV.fetch(3, false).eql?('remove') ? true : false
+secure_log_file = File.absolute_path(ARGV[3])
+normal_log_file = File.absolute_path(ARGV[4])
+remove = ARGV.fetch(5, false).eql?('remove') ? true : false
 
 Dir.chdir root
 require 'bundler'
@@ -27,4 +30,11 @@ Bundler.setup(:default)
 
 require 'syscase'
 
-Syscase::Web::ExampleImport.new(result, input_file, path_file, remove).call
+Syscase::Web::ExampleImport.new(
+  result:          result,
+  input_file:      input_file,
+  path_file:       path_file,
+  secure_log_file: secure_log_file,
+  normal_log_file: normal_log_file,
+  remove:          remove
+).call
