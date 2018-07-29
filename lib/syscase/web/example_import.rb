@@ -3,18 +3,19 @@
 require 'digest'
 require 'base64'
 
+# rubocop:disable Metrics/ClassLength
 class Syscase
   class Web
     # Import of example result data to database
     class ExampleImport
-      def initialize(result, input_file, path_file, remove = false)
-        @result = result
-        @input_file = input_file
-        @path_file = path_file
-        @remove = remove
-        @input = Base64.encode64(IO.binread(@input_file))
-        @path = IO.read(@path_file).strip
-        @example = example_model
+      def initialize(hash)
+        @result = hash.fetch(:result)
+        @input_file = hash.fetch(:input_file)
+        @path_file = hash.fetch(:path_file)
+        @secure_log_file = hash.fetch(:secure_log_file)
+        @normal_log_file = hash.fetch(:normal_log_file)
+        @remove = hash.fetch(remove, false)
+        setup
       end
 
       def call
@@ -28,21 +29,31 @@ class Syscase
 
       private
 
+      def setup
+        @input = Base64.encode64(IO.binread(@input_file))
+        @path = IO.read(@path_file).strip
+        @secure_log = IO.read(@secure_log_file).strip
+        @normal_log = IO.read(@normal_log_file).strip
+        @example = example_model
+      end
+
       def example_model
         Syscase::Web::Model::ExampleWithPaths.new(
-          input: @input,
-          result: @result,
-          sha256:  Digest::SHA256.hexdigest(@path),
-          path:  @path,
-          time:  Time.now,
-          paths: example_paths
+          input:      @input,
+          result:     @result,
+          sha256:     Digest::SHA256.hexdigest(@path),
+          path:       @path,
+          time:       Time.now,
+          secure_log: @secure_log,
+          normal_log: @normal_log,
+          paths:      example_paths
         )
       end
 
       def example_paths
         @path.split("\n").each_with_index.map do |address, index|
           Syscase::Web::Model::Path.new(
-            index: index,
+            index:   index,
             address: address.to_i(16)
           )
         end
@@ -82,6 +93,10 @@ class Syscase
         FileUtils.rm(@input_file)
         puts "Remove path file: #{@input_file}"
         FileUtils.rm(@path_file)
+        puts "Remove secure log file: #{@secure_log_file}"
+        FileUtils.rm(@secure_log_file)
+        puts "Remove normal log file: #{@normal_log_file}"
+        FileUtils.rm(@normal_log_file)
         puts 'Clean up finished'
       end
 
@@ -96,7 +111,7 @@ class Syscase
       def example_count_from(example_id)
         Syscase::Web::Model::ExampleCount.new(
           example: example_id,
-          count: 1
+          count:   1
         )
       end
 
@@ -126,3 +141,4 @@ class Syscase
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

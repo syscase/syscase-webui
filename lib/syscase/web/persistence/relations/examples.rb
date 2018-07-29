@@ -9,12 +9,14 @@ class Syscase
           include LB::Persistence::Relation::Joins
 
           schema(:examples) do
-            attribute :id,     ROM::SQL::Types::Serial
-            attribute :input,  ROM::SQL::Types::String
-            attribute :result, ROM::SQL::Types::String
-            attribute :sha256, ROM::SQL::Types::String
-            attribute :path,   ROM::SQL::Types::String
-            attribute :time,   ROM::SQL::Types::DateTime
+            attribute :id,         ROM::SQL::Types::Serial
+            attribute :input,      ROM::SQL::Types::String
+            attribute :result,     ROM::SQL::Types::String
+            attribute :sha256,     ROM::SQL::Types::String
+            attribute :path,       ROM::SQL::Types::String
+            attribute :time,       ROM::SQL::Types::DateTime
+            attribute :secure_log, ROM::SQL::Types::String
+            attribute :normal_log, ROM::SQL::Types::String
 
             primary_key :id
 

@@ -61,10 +61,12 @@ class Syscase
 
       def import_file(file)
         Syscase::Web::ExampleImport.new(
-          result_for(file),
-          input_file_for(file),
-          file,
-          @remove
+          result:          result_for(file),
+          input_file:      file_for(file, 'scase'),
+          path_file:       file,
+          secure_log_file: file_for(file, 'secure.log'),
+          normal_log_file: file_for(file, 'normal.log'),
+          remove:          @remove
         ).call
       end
 
@@ -72,8 +74,8 @@ class Syscase
         file[/.*-result-([a-z]+)\.scov$/, 1]
       end
 
-      def input_file_for(file)
-        file.sub(/(.*\.)scov$/, '\1scase')
+      def file_for(file, suffix)
+        file.sub(/(.*\.)scov$/, "\1#{suffix}")
       end
 
       def handle_error(e)
