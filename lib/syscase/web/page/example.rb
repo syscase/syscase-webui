@@ -33,6 +33,14 @@ class Syscase
                       .join("\n")
         end
 
+        def secure_log
+          example.fetch(:secure_log)
+        end
+
+        def normal_log
+          example.fetch(:normal_log)
+        end
+
         def name
           [
             format('%05d', id),
