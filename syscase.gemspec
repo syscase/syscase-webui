@@ -25,7 +25,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.5'
 
   gem.add_dependency             'dry-types',      '~> 0.12', '< 0.13'
-  gem.add_dependency             'lb-persistence', '~> 0.0.7'
+  gem.add_dependency             'lb-persistence', '~> 0.0.8'
   gem.add_dependency             'lb-project',     '~> 0.2.1'
   gem.add_dependency             'slim',           '~> 3.0', '>= 3.0.9'
   gem.add_dependency             'sqlite3',        '~> 1.3'
