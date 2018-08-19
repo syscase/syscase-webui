@@ -21,6 +21,10 @@ class Syscase
             relation.map_to(Syscase::Web::Persistence::Model::Path)
           end
 
+          def coverage_count
+            paths.coverage_count
+          end
+
           private
 
           def repository_mapper
