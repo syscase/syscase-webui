@@ -7,9 +7,11 @@ class Syscase
         # Paths relation
         class Paths < ROM::Relation[:sql]
           schema(:paths) do
+            attribute :id, ROM::SQL::Types::Serial
+            primary_key :id
+
             attribute :example, ROM::SQL::Types::ForeignKey(:examples)
             attribute :index, ROM::SQL::Types::Int
-            primary_key :example, :index
 
             attribute :address, ROM::SQL::Types::ForeignKey(:addresses)
 
