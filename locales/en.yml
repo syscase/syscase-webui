@@ -4,3 +4,7 @@ site:
 page:
   coverage:
     title: Coverage
+  example:
+    title: Example
+  functions:
+    title: Functions

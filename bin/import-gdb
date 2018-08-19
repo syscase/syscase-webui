@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+require 'syscase'
+
+Syscase::Web::GDBImport.new.call

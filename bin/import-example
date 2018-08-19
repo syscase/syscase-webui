@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+log_file = ENV.fetch('IMPORT_LOG_FILE', false)
+
+if log_file
+  require 'logger'
+  logger = Logger.new(log_file)
+  $stdout.reopen logger.instance_variable_get(:@logdev).dev
+  $stderr.reopen logger.instance_variable_get(:@logdev).dev
+end
+
+usage = 'Usage: import-example result INPUT_FILE PATH_FILE SECURE_LOG_FILE'\
+  'NORMAL_LOG_FILE [remove]'
+raise ArgumentError, usage unless ARGV.size >= 5
+
+result = ARGV[0]
+input_file = File.absolute_path(ARGV[1])
+path_file = File.absolute_path(ARGV[2])
+secure_log_file = File.absolute_path(ARGV[3])
+normal_log_file = File.absolute_path(ARGV[4])
+remove = ARGV.fetch(5, false).eql?('remove') ? true : false
+
+Dir.chdir root
+require 'bundler'
+Bundler.setup(:default)
+
+require 'syscase'
+
+Syscase::Web::ExampleImport.new(
+  result:          result,
+  input_file:      input_file,
+  path_file:       path_file,
+  secure_log_file: secure_log_file,
+  normal_log_file: normal_log_file,
+  remove:          remove
+).call

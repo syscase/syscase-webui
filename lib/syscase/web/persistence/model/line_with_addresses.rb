@@ -12,7 +12,7 @@ class Syscase
           attribute :function, Syscase::Web::Types::Strict::Int
 
           redefine_attribute :addresses, Syscase::Web::Types::Strict::Array
-            .member(Syscase::Web::Persistence::Model::Address)
+            .of(Syscase::Web::Persistence::Model::Address)
         end
       end
     end

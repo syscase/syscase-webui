@@ -25,7 +25,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.5'
 
   gem.add_dependency             'dry-types',      '~> 0.12', '< 0.13'
-  gem.add_dependency             'lb-persistence', '~> 0.0.6'
+  gem.add_dependency             'lb-persistence', '~> 0.0.8'
   gem.add_dependency             'lb-project',     '~> 0.2.1'
   gem.add_dependency             'slim',           '~> 3.0', '>= 3.0.9'
   gem.add_dependency             'sqlite3',        '~> 1.3'
@@ -35,5 +35,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-bundler',  '~> 2.1'
   gem.add_development_dependency 'guard-rspec',    '~> 4.7', '>= 4.7.3'
   gem.add_development_dependency 'guard-rubocop',  '~> 1.3'
+  gem.add_development_dependency 'puma',           '~> 3.4'
   gem.add_development_dependency 'shotgun',        '~> 0.9.2'
 end

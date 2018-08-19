@@ -3,10 +3,10 @@
 class Syscase
   class Web
     class Model
-      # Example model with nested addresses
-      class ExampleWithAddresses < Example
+      # Example model with nested paths
+      class ExampleWithPaths < Example
         attribute :paths, Syscase::Web::Types::Strict::Array
-          .member(Syscase::Web::Model::PathWithAddresses)
+          .of(Syscase::Web::Model::Path)
       end
     end
   end

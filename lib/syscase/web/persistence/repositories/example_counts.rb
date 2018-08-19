@@ -4,8 +4,8 @@ class Syscase
   class Web
     module Persistence
       module Repositories
-        # Jobs repository
-        class Jobs < ROM::Repository[:jobs]
+        # Example counts repository
+        class ExampleCounts < ROM::Repository[:example_counts]
           # Disable auto_struct feature to enable custom mappers
           auto_struct false
 

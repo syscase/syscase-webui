@@ -1,0 +1,14 @@
+h1 = "#{page.title}"
+p.coverage_result
+  = "#{page.covered} / #{page.total} covered (#{format('%.2f', page.coverage * 100)}%)"
+- page.functions.each do |function|
+  h2
+    = "#{function.name}: #{function.file.name}"
+  h3
+    = "#{function.signature}"
+  - function.lines.each do |line|
+    code
+      = "\n#{line.line}:\t #{line.code}\n"
+      - line.addresses.each do |address|
+        span class=page.class_for_address(address)
+          = "#{address.address}:\t #{address.code}\n"

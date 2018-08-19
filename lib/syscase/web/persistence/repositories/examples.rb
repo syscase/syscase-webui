@@ -10,6 +10,10 @@ class Syscase
           auto_struct false
 
           commands :create, update: :by_pk, delete: :by_pk
+
+          def by_hash(sha256)
+            examples.by_hash(sha256)
+          end
         end
       end
     end

@@ -4,8 +4,8 @@ class Syscase
   class Web
     module Persistence
       module Model
-        # Persistence job model
-        class Job < Syscase::Web::Model::Job
+        # Persistence example count model
+        class ExampleCount < Syscase::Web::Model::ExampleCount
           attribute :id, Syscase::Web::Types::Strict::Int
         end
       end

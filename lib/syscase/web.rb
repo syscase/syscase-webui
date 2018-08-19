@@ -60,6 +60,11 @@ class Syscase
         )
       )
     end
+
+    def self.functions
+      @functions ||= db.repository(Persistence::Repositories::Functions)
+                       .all.to_a
+    end
   end
 end
 
@@ -70,13 +75,13 @@ require 'syscase/web/model/function'
 require 'syscase/web/model/line'
 require 'syscase/web/model/address'
 require 'syscase/web/model/example'
+require 'syscase/web/model/example_count'
 require 'syscase/web/model/path'
-require 'syscase/web/model/job'
 require 'syscase/web/model/line_with_addresses'
 require 'syscase/web/model/function_with_addresses'
 require 'syscase/web/model/file_with_addresses'
 require 'syscase/web/model/path_with_addresses'
-require 'syscase/web/model/example_with_addresses'
+require 'syscase/web/model/example_with_paths'
 
 # Persistence models
 require 'syscase/web/persistence/model/file'
@@ -84,13 +89,13 @@ require 'syscase/web/persistence/model/function'
 require 'syscase/web/persistence/model/line'
 require 'syscase/web/persistence/model/address'
 require 'syscase/web/persistence/model/example'
+require 'syscase/web/persistence/model/example_count'
 require 'syscase/web/persistence/model/path'
-require 'syscase/web/persistence/model/job'
 require 'syscase/web/persistence/model/line_with_addresses'
 require 'syscase/web/persistence/model/function_with_addresses'
 require 'syscase/web/persistence/model/file_with_addresses'
 require 'syscase/web/persistence/model/path_with_addresses'
-require 'syscase/web/persistence/model/example_with_addresses'
+require 'syscase/web/persistence/model/example_with_paths'
 
 # Repositories
 require 'syscase/web/persistence/repositories/files'
@@ -98,18 +103,24 @@ require 'syscase/web/persistence/repositories/functions'
 require 'syscase/web/persistence/repositories/lines'
 require 'syscase/web/persistence/repositories/addresses'
 require 'syscase/web/persistence/repositories/examples'
+require 'syscase/web/persistence/repositories/example_counts'
 require 'syscase/web/persistence/repositories/paths'
-require 'syscase/web/persistence/repositories/jobs'
 
 # Pages
 require 'syscase/web/page'
 require 'syscase/web/page/coverage'
+require 'syscase/web/page/example'
+require 'syscase/web/page/functions'
 
 # Routes
 require 'syscase/web/route'
 require 'syscase/web/route/coverage'
+require 'syscase/web/route/example'
+require 'syscase/web/route/functions'
 require 'syscase/web/app'
 
 # Import
 require 'syscase/web/gdb'
 require 'syscase/web/gdb_import'
+require 'syscase/web/example_import'
+require 'syscase/web/worker'

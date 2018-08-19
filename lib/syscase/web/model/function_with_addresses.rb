@@ -6,7 +6,7 @@ class Syscase
       # Function model with nested addresses
       class FunctionWithAddresses < Function
         attribute :lines, Syscase::Web::Types::Strict::Array
-          .member(Syscase::Web::Model::LineWithAddresses)
+          .of(Syscase::Web::Model::LineWithAddresses)
       end
     end
   end

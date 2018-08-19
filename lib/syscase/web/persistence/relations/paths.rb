@@ -7,9 +7,11 @@ class Syscase
         # Paths relation
         class Paths < ROM::Relation[:sql]
           schema(:paths) do
+            attribute :id, ROM::SQL::Types::Serial
+            primary_key :id
+
             attribute :example, ROM::SQL::Types::ForeignKey(:examples)
             attribute :index, ROM::SQL::Types::Int
-            primary_key :example, :index
 
             attribute :address, ROM::SQL::Types::ForeignKey(:addresses)
 
@@ -24,6 +26,29 @@ class Syscase
 
           def by_address(address)
             where(address: address)
+          end
+
+          def code_by_example(example)
+            join_addresses_for_example(
+              select(paths[:index], addresses[:code]),
+              example
+            ).distinct.order(paths[:index])
+          end
+
+          def coverage_count
+            join_addresses.select(paths[:address]).distinct.to_a.size
+          end
+
+          def join_addresses
+            join(:addresses,
+                 paths[:address].qualified => addresses[:address].qualified)
+          end
+
+          def join_addresses_for_example(base, example)
+            base
+              .join(:addresses,
+                    paths[:address].qualified => addresses[:address].qualified,
+                    paths[:example] => example)
           end
 
           def joined

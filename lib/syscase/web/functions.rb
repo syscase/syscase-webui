@@ -16,18 +16,6 @@ class Syscase
       import LB::Persistence::Functions
 
       class << self
-        def wrap_prefix(array, key, keys, prefix, model = nil)
-          compose do |ops|
-            ops << t(:wrap, key, keys)
-            ops << t(:map_array,
-                     t(:remove_key_prefix_inject_hash_for, key, prefix, model))
-          end.call(array)
-        end
-
-        def remove_key_prefix_inject_hash_for(hash, key, prefix, model = nil)
-          t(:map_value, key,
-            t(:remove_key_prefix_inject, prefix, model)).call(hash)
-        end
       end
     end
   end
