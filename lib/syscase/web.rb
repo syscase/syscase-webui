@@ -60,6 +60,11 @@ class Syscase
         )
       )
     end
+
+    def self.functions
+      @functions ||= db.repository(Persistence::Repositories::Functions)
+                       .all.to_a
+    end
   end
 end
 
