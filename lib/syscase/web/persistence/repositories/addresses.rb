@@ -10,6 +10,10 @@ class Syscase
           auto_struct false
 
           commands :create, update: :by_pk, delete: :by_pk
+
+          def count
+            addresses.count
+          end
         end
       end
     end
