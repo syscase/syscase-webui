@@ -9,44 +9,22 @@ class Syscase
           # Disable auto_struct feature to enable custom mappers
           auto_struct false
 
-          commands :create, update: :by_pk, delete: :by_pk
-
-          def as(relation)
-            relation.joined.map_with(repository_mapper)
-          end
-
-          def prepared_aggregation
-            aggregate(:addresses)
-          end
-
-          def base_relation
-            functions
-          end
-
-          def repository_mapper
-            :function_with_addresses
-          end
-
-          # TODO: Extract basic methods:
-
           def by_id(id)
-            as_one(prepared_aggregation.by_id(id))
+            map(function.joined.by_id(id))
           end
 
           def all
-            as_many(prepared_aggregation)
+            map(functions.joined)
           end
 
-          def changeset(id, command, entity)
-            base_relation.by_pk(id).changeset(command, entity)
+          def map(relation)
+            relation.map_with(repository_mapper)
           end
 
-          def as_one(relation)
-            as(relation).one!
-          end
+          private
 
-          def as_many(relation)
-            as(relation).to_a
+          def repository_mapper
+            :function_with_addresses
           end
         end
       end
