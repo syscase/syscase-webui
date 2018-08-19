@@ -110,6 +110,7 @@ require 'syscase/web/persistence/repositories/paths'
 require 'syscase/web/page'
 require 'syscase/web/page/coverage'
 require 'syscase/web/page/example'
+require 'syscase/web/page/functions'
 
 # Routes
 require 'syscase/web/route'
