@@ -17,6 +17,10 @@ class Syscase
           r.run Syscase::Web::Route::Example.freeze.app
         end
 
+        r.on 'functions' do
+          r.run Syscase::Web::Route::Functions.freeze.app
+        end
+
         r.on 'coverage' do
           r.run Syscase::Web::Route::Coverage.freeze.app
         end
