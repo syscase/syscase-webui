@@ -116,6 +116,7 @@ require 'syscase/web/page/functions'
 require 'syscase/web/route'
 require 'syscase/web/route/coverage'
 require 'syscase/web/route/example'
+require 'syscase/web/route/functions'
 require 'syscase/web/app'
 
 # Import
