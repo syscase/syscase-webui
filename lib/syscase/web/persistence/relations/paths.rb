@@ -35,6 +35,15 @@ class Syscase
             ).distinct.order(paths[:index])
           end
 
+          def coverage_count
+            join_addresses.select(paths[:address]).distinct.to_a.size
+          end
+
+          def join_addresses
+            join(:addresses,
+                 paths[:address].qualified => addresses[:address].qualified)
+          end
+
           def join_addresses_for_example(base, example)
             base
               .join(:addresses,
