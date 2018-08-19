@@ -19,6 +19,10 @@ class Syscase
               belongs_to :lines
             end
           end
+
+          def count
+            select(:address).distinct.to_a.size
+          end
         end
       end
     end
