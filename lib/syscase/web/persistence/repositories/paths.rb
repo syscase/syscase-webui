@@ -9,6 +9,8 @@ class Syscase
           # Disable auto_struct feature to enable custom mappers
           auto_struct false
 
+          commands :create, update: :by_pk, delete: :by_pk
+
           def by_address(address)
             all.by_address(address)
           end
