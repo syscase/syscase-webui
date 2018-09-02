@@ -10,10 +10,14 @@ class Syscase
             attribute :id, ROM::SQL::Types::Serial
             primary_key :id
 
-            attribute :example, ROM::SQL::Types::ForeignKey(:examples)
-            attribute :index, ROM::SQL::Types::Int
+            attribute :example,   ROM::SQL::Types::ForeignKey(:examples)
+            attribute :index,     ROM::SQL::Types::Int
 
-            attribute :address, ROM::SQL::Types::ForeignKey(:addresses)
+            attribute :address,   ROM::SQL::Types::ForeignKey(:addresses)
+            attribute :start,     ROM::SQL::Types::Int
+            attribute :end,       ROM::SQL::Types::Int
+            attribute :level,     ROM::SQL::Types::Int
+            attribute :is_secure, ROM::SQL::Types::Bool
 
             associations do
               belongs_to :addresses
