@@ -17,6 +17,7 @@ class Syscase
             attribute :time,       ROM::SQL::Types::DateTime
             attribute :secure_log, ROM::SQL::Types::String
             attribute :normal_log, ROM::SQL::Types::String
+            attribute :qemu_log,   ROM::SQL::Types::String
 
             primary_key :id
 

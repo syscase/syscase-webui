@@ -15,6 +15,7 @@ class Syscase
         @path_file = hash.fetch(:path_file)
         @secure_log_file = hash.fetch(:secure_log_file)
         @normal_log_file = hash.fetch(:normal_log_file)
+        @qemu_log_file = hash.fetch(:qemu_log_file)
         @remove = hash.fetch(:remove, false)
         setup
       end
@@ -35,20 +36,32 @@ class Syscase
         @path = IO.read(@path_file).strip
         @secure_log = Base64.encode64(IO.read(@secure_log_file))
         @normal_log = Base64.encode64(IO.read(@normal_log_file))
+        @qemu_log = Base64.encode64(IO.read(@qemu_log_file))
         @example = example_model
       end
 
       def example_model
         Syscase::Web::Model::ExampleWithPaths.new(
-          input:      @input,
-          result:     @result,
-          sha256:     Digest::SHA256.hexdigest(@path),
-          path:       @path,
-          time:       @time,
+          log_files.merge(meta_data).merge(paths: example_paths)
+        )
+      end
+
+      def log_files
+        {
           secure_log: @secure_log,
           normal_log: @normal_log,
-          paths:      example_paths
-        )
+          qemu_log:   @qemu_log
+        }
+      end
+
+      def meta_data
+        {
+          input:  @input,
+          result: @result,
+          sha256: Digest::SHA256.hexdigest(@path),
+          path:   @path,
+          time:   @time
+        }
       end
 
       def example_paths
@@ -97,11 +110,17 @@ class Syscase
         FileUtils.rm(@input_file)
         puts "Remove path file: #{@input_file}"
         FileUtils.rm(@path_file)
+        clean_log_files
+        puts 'Clean up finished'
+      end
+
+      def clean_log_files
         puts "Remove secure log file: #{@secure_log_file}"
         FileUtils.rm(@secure_log_file)
         puts "Remove normal log file: #{@normal_log_file}"
         FileUtils.rm(@normal_log_file)
-        puts 'Clean up finished'
+        puts "Remove qemu log file: #{@qemu_log_file}"
+        FileUtils.rm(@qemu_log_file)
       end
 
       def create_example

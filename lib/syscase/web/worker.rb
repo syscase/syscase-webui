@@ -5,6 +5,7 @@ require 'time'
 
 class Syscase
   class Web
+    # rubocop:disable Metrics/ClassLength
     # Worker
     class Worker
       DEFAULT_WAIT_TIME = 1
@@ -79,16 +80,26 @@ class Syscase
       end
 
       def import_file(file)
-        import_example(result:          result_for(file),
-                       time:            time_for(file),
-                       input_file:      file_for(file, 'scase'),
-                       path_file:       file,
-                       secure_log_file: file_for(file, 'secure.log'),
-                       normal_log_file: file_for(file, 'normal.log'),
-                       remove:          false)
+        import_example(
+          file_hash_for(file).merge(
+            result: result_for(file),
+            time:   time_for(file),
+            remove: false
+          )
+        )
       rescue StandardError => e
         handle_error(e)
         self
+      end
+
+      def file_hash_for(file)
+        {
+          input_file:      file_for(file, 'scase'),
+          path_file:       file,
+          secure_log_file: file_for(file, 'secure.log'),
+          normal_log_file: file_for(file, 'normal.log'),
+          qemu_log_file:   file_for(file, 'qemu.log')
+        }
       end
 
       def import_example(hash)
@@ -127,5 +138,6 @@ class Syscase
         @logger.error  e.backtrace.inspect
       end
     end
+    # rubocop:enable Metrics/ClassLength
   end
 end
