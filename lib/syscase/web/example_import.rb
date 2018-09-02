@@ -51,11 +51,14 @@ class Syscase
       end
 
       def example_paths
-        @path.split("\n").each_with_index.map do |address, index|
-          Syscase::Web::Model::Path.new(
-            index:   index,
-            address: address.to_i(16)
-          )
+        @path.split("\n").each_with_index.map do |data, index|
+          start_addr, end_addr, address, level, is_secure = data.split(',')
+          Syscase::Web::Model::Path.new(index:   index,
+                                        address: address.to_i(16),
+                                        start:   start_addr.to_i(16),
+                                        end:     end_addr.to_i(16),
+                                        level:   level.to_i,
+                                        is_secure: !is_secure.to_i.zero?)
         end
       end
 
