@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+usage = 'Usage: import-database DATABASE_NAME'
+raise ArgumentError, usage unless ARGV.size == 1
+
+database = ARGV.fetch(1)
+`dropdb "#{database}"`
