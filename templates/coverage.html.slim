@@ -1,4 +1,6 @@
 h1 = "#{page.title}"
+p.coverage_result
+  = "#{page.covered} / #{page.total} covered (#{format('%.2f', page.coverage * 100)}%)"
 h2
   a href="/functions" Functions
 h2 Examples
