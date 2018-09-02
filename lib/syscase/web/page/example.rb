@@ -41,6 +41,10 @@ class Syscase
           Base64.decode64(example.fetch(:normal_log))
         end
 
+        def qemu_log
+          Base64.decode64(example.fetch(:qemu_log))
+        end
+
         def name
           [
             format('%05d', id),

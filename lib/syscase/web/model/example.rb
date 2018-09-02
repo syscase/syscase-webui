@@ -12,6 +12,7 @@ class Syscase
         attribute :time,       Syscase::Web::Types::Strict::Time
         attribute :secure_log, Syscase::Web::Types::Strict::String
         attribute :normal_log, Syscase::Web::Types::Strict::String
+        attribute :qemu_log,   Syscase::Web::Types::Strict::String
       end
     end
   end
