@@ -12,7 +12,7 @@ class Syscase
           commands :create, update: :by_pk, delete: :by_pk
 
           def count
-            addresses.count
+            addresses.distinct_count
           end
         end
       end

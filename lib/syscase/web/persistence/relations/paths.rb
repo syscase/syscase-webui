@@ -36,7 +36,9 @@ class Syscase
           end
 
           def coverage_count
-            join_addresses.select(paths[:address]).distinct.to_a.size
+            join_addresses.select(paths[:address])
+                          .order(paths[:address])
+                          .distinct.count
           end
 
           def join_addresses

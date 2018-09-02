@@ -20,8 +20,8 @@ class Syscase
             end
           end
 
-          def count
-            select(:address).distinct.to_a.size
+          def distinct_count
+            select(:address).order(:address).distinct.count
           end
         end
       end
