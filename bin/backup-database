@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+usage = 'Usage: import-database DATABASE_NAME [SQL_DUMP]'
+raise ArgumentError, usage unless ARGV.size >= 1
+
+database = ARGV.fetch(1)
+dump = File.absolute_path(ARGV.fetch(2, 'syscase-gdb.sql'))
+
+raise ArgumentError, "#{dump} already exist!" if File.exist?(dump)
+raise ArgumentError, "#{dump} is not writable!" unless File.writable?(dump)
+
+`pg_dump "#{database}" > "#{dump}"`
