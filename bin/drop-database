@@ -4,5 +4,5 @@
 usage = 'Usage: import-database DATABASE_NAME'
 raise ArgumentError, usage unless ARGV.size == 1
 
-database = ARGV.fetch(1)
+database = ARGV.fetch(0)
 `dropdb "#{database}"`
