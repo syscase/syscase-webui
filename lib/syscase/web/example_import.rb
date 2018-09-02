@@ -10,6 +10,7 @@ class Syscase
     class ExampleImport
       def initialize(hash)
         @result = hash.fetch(:result)
+        @time = hash.fetch(:time)
         @input_file = hash.fetch(:input_file)
         @path_file = hash.fetch(:path_file)
         @secure_log_file = hash.fetch(:secure_log_file)
@@ -43,7 +44,7 @@ class Syscase
           result:     @result,
           sha256:     Digest::SHA256.hexdigest(@path),
           path:       @path,
-          time:       Time.now,
+          time:       @time,
           secure_log: @secure_log,
           normal_log: @normal_log,
           paths:      example_paths

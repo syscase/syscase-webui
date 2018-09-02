@@ -12,6 +12,7 @@ class Syscase
       TAR_JOB_LIMIT = 10_000
       TAR_CMD = ['tar', '--append', '--xz', '--verbose', '--remove-files',
                  '--file'].freeze
+      FILE_REGEX = %r{.*/([^/]+)-((?:[\h]+-){4}[\h]+)-result-([a-z]+)\.scov$}
 
       def initialize(working_dir, remove = false)
         @working_dir = working_dir
@@ -79,6 +80,7 @@ class Syscase
 
       def import_file(file)
         import_example(result:          result_for(file),
+                       time:            time_for(file),
                        input_file:      file_for(file, 'scase'),
                        path_file:       file,
                        secure_log_file: file_for(file, 'secure.log'),
@@ -108,7 +110,11 @@ class Syscase
       end
 
       def result_for(file)
-        file[/.*-result-([a-z]+)\.scov$/, 1]
+        file[FILE_REGEX, 3]
+      end
+
+      def time_for(file)
+        Time.strptime(file[FILE_REGEX, 1], '%Y-%m-%d-%H%M%S-%Z')
       end
 
       def file_for(file, suffix)
