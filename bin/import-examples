@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+usage = 'Usage: import-examples WORKING_DIR [REMOVE]'
+raise ArgumentError, usage unless ARGV.size >= 1
+
+working_dir = File.absolute_path(ARGV[0])
+remove = ARGV.fetch(1, false).eql?('remove') ? true : false
+
+Dir.chdir root
+require 'bundler'
+Bundler.setup(:default)
+
+require 'syscase'
+
+Syscase::Web::Worker.new(working_dir, remove).import
