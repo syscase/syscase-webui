@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+usage = 'Usage: import-compressed IMPORT_DIR'
+raise ArgumentError, usage unless ARGV.size == 1
+
+import_dir = File.absolute_path(ARGV[0])
+
+Dir.chdir root
+require 'bundler'
+Bundler.setup(:default)
+
+require 'syscase'
+
+Syscase::Web::ArchiveImport.new(import_dir).call
