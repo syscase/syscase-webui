@@ -1,0 +1,119 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+root = File.dirname(File.dirname(File.expand_path(__FILE__)))
+$LOAD_PATH << File.join(root, 'lib')
+
+require 'syscase'
+
+hash = [
+  {
+    target: 'optee',
+    calls: [
+      [
+        {
+          type: 'number',
+          default: 1,
+          offset: 0,
+          size: 8
+        },
+        {
+          type: 'buffer',
+          default: 'Foo',
+          offset: 8,
+          size: 128
+        },
+        {
+          type: 'alloc',
+          default: '128',
+          offset: 136,
+          size: 8
+        }
+      ]
+    ]
+  }
+]
+
+string = Syscase.ascii(
+  # JSON header
+  JSON.dump(hash) +
+  # Binary delimiter
+  %(\xb7\xe3) +
+  # Binary data
+  %(\x00\x00\x00\x00\x00\x00\x00\x01) +
+  %(Foo\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x00) +
+  %(\x00\x00\x00\x00\x00\x00\x00\x80)
+)
+
+IO.write(File.join(root, 'json-input.bin'), string)
+
+uuid_size = 16
+buffer_size = 4096
+size = uuid_size + 4 + 112 + 8 * buffer_size
+hash = [
+  {
+    target: 'smc_driver',
+    calls: [
+      [
+        {
+          type: 'buffer',
+          offset: 0,
+          size: size
+        }
+      ],
+      [
+        {
+          type: 'buffer',
+          offset: size,
+          size: size
+        }
+      ],
+      [
+        {
+          type: 'buffer',
+          offset: size * 2,
+          size: size
+        }
+      ]
+    ]
+  }
+]
+
+string = Syscase.ascii(
+  # JSON header
+  JSON.dump(hash) +
+  # Binary delimiter
+  %(\xb7\xe3) +
+  # UUID
+  %(\xdf\x97\x8b\x5f) + %(\x0d\x2d) + %(\xd2\x4a) +
+	%(\x98\xd2\x74\xf4\x38\x27\x98\xbb) +
+  # Binary data
+  (%(\x00) * (size - uuid_size)) +
+  # UUID
+  %(\xdf\x97\x8b\x5f) + %(\x0d\x2d) + %(\xd2\x4a) +
+	%(\x98\xd2\x74\xf4\x38\x27\x98\xbb) +
+  # Binary data
+  (%(\x00) * (size - uuid_size)) +
+  # UUID
+  %(\xdf\x97\x8b\x5f) + %(\x0d\x2d) + %(\xd2\x4a) +
+	%(\x98\xd2\x74\xf4\x38\x27\x98\xbb) +
+  # Binary data
+  (%(\x00) * (size - uuid_size))
+)
+
+IO.write(File.join(root, 'json-input-smc-driver.bin'), string)
