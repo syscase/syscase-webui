@@ -1,12 +1,7 @@
-[gem]: https://rubygems.org/gems/syscase
-[gemnasium]: https://gemnasium.com/zaidan/syscase
+# Syscase Web User Interface
 
-# Syscase
-
-[![Gem Version](https://badge.fury.io/rb/syscase.svg)][gem]
-[![Dependency Status](https://gemnasium.com/zaidan/syscase.svg)][gemnasium]
-
-System call test case generator for AFL.
+The Syscase Web User Interface is an analytic tool that measures and visualizes the
+assembly and C code coverage while fuzzing.
 
 ## Credits
 
