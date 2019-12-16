@@ -10,7 +10,7 @@ var Clean = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var AssetsPlugin = require('assets-webpack-plugin');
- 
+
 module.exports = {
   mode: 'production',
 
@@ -67,7 +67,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['env']
+              presets: ['@babel/preset-env']
             }
           },
         ]
@@ -91,7 +91,6 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                minimize: false,
                 sourceMap: false
               }
             },
@@ -111,7 +110,6 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                minimize: false,
                 sourceMap: false,
                 modules: true,
                 importLoaders: 2,
