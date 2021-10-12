@@ -39,6 +39,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-bundler',  '~> 2.1'
   gem.add_development_dependency 'guard-rspec',    '~> 4.7', '>= 4.7.3'
   gem.add_development_dependency 'guard-rubocop',  '~> 1.3'
-  gem.add_development_dependency 'puma',           '~> 4.3'
+  gem.add_development_dependency 'puma',           '~> 5.5'
   gem.add_development_dependency 'shotgun',        '~> 0.9.2'
 end
