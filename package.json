@@ -23,7 +23,7 @@
     "file-loader": "^5.0.2",
     "flask": "^0.2.10",
     "import-glob-loader": "^1.1.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "postcss": "^7.0.24",
     "postcss-preset-env": "^6.7.0",
     "postcss-icss-values": "^2.0.2",
